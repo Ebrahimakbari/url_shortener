@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 from .models import UrlShortener
 from .forms import UrlShortenerForm
+from django.db.models import F
 
 
 class UrlShortenerView(View):
@@ -35,7 +36,7 @@ class RedirectShortUrlView(View):
         url_qs = UrlShortener.objects.filter(short_url=short_url)
         if url_qs.exists():
             url_obj = url_qs.first()
-            url_obj.times_used += 1
+            url_obj.times_used = F('times_used') + 1
             url_obj.save()
             return redirect(url_obj.original_url)
         return HttpResponse("link is broken!!")
