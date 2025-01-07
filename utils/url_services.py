@@ -11,7 +11,7 @@ def create_random_str(chars):
     return ''.join(choice(chars) for _ in range(url_shortener_size))
 
 
-# checking for duplicate possibility
+# checking for duplicate possibility of short urls
 def shortener_url_generator(model_instance):
     random_str = create_random_str(chars)
     
