@@ -1,0 +1,17 @@
+{% extends "shared/index.html" %}
+
+{% block title %}URL SHORTENER{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Create Shorter Url</button>
+        </form>
+        <br>
+        {{ original_url }}
+        <br>
+        {{ short_url }}
+    </div>
+{% endblock content %}
